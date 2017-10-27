@@ -27,13 +27,13 @@ Route::group(['middleware'=>['web']],function(){
         Route::post('register',array('as' => 'register.create', 'uses' => 'AuthController@create'));
 
 
-        Route::get('logout','AuthController@logout');
+        Route::get('logout',array('as'=>'auth.logout', 'uses'=>'AuthController@logout'));
 
 
     });
 
     Route::group(['prefix' => 'dashboard','middleware'=>'auth'],function (){
-        Route::get('/','DashboardController@index');
+        Route::get('/',array('as' => 'dashboard', 'uses' => 'DashboardController@index'));
     });
 
 
