@@ -111,6 +111,9 @@
                                     </div>
                                 </div>
                                 <p class="category text-center">
+                                    @foreach($errors->all() as $error)
+                                        {{$error}}<br>
+                                    @endforeach
                                     @if(Session::get('fail'))
                                         {{Session::get('fail')}}
                                     @endif

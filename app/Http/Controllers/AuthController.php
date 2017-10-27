@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
 
+
+    public function __construct(){
+        $this->middleware('guest')->except('logout');
+    }
 
 
     public function login(){
@@ -41,6 +46,33 @@ class AuthController extends Controller
 
 
 
+    }
+
+
+    public function create(Request $request){
+        $this->validate($request,[
+            'email' => ['required','max:255','email','unique:users'],
+            'password'=>['required','min:6','max:255','confirmed'],
+            'name'=>['required','max:255'],
+            'matricula'=>['required','max:20']
+
+        ]);
+
+
+        $credentials = array_merge($request->all(),['password'=>bcrypt($request->input('password'))]);
+        User::create($credentials);
+
+        return redirect('auth/login');
+
+
+    }
+
+
+
+    public function logout(){
+        Auth::logout();
+
+        return redirect('/dashboard');
     }
 
 
