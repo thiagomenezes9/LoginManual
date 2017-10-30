@@ -95,11 +95,14 @@
                                         <i class="fa fa-twitter"></i>
                                     </button>
                                     <button class="btn btn-just-icon btn-round btn-dribbble">
-                                        <i class="fa fa-dribbble"></i>
+                                        <i class="fa fa-facebook" aria-hidden="true"></i>
                                     </button>
-                                    <button class="btn btn-just-icon btn-round btn-facebook">
-                                        <i class="fa fa-facebook"> </i>
-                                    </button>
+                                    {{--<button class="btn btn-just-icon btn-round btn-facebook">--}}
+
+
+
+                                      <a href="{{url('/redirect')}}" class="btn btn-facebook"><i class="fa fa-facebook" aria-hidden="true">facebook</i></a>
+                                    {{--</button>--}}
 
                                 </div>
 

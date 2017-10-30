@@ -36,6 +36,7 @@ Route::group(['middleware'=>['web']],function(){
         Route::get('/',array('as' => 'dashboard', 'uses' => 'DashboardController@index'));
     });
 
-
+    Route::get('/redirect', 'SocialController@redirect');
+    Route::get('/callback', 'SocialController@callback');
 
 });
