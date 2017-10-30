@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class SocialController extends Controller
 {
@@ -19,7 +21,8 @@ class SocialController extends Controller
 
         $authUser = $this->findOrCreateUser($user, 'facebook');
         Auth::login($authUser, true);
-        return redirect($this->redirectTo);
+//        dd($user);
+        return redirect('/auth/login');
     }
 
 
@@ -32,8 +35,9 @@ class SocialController extends Controller
         return User::create([
             'name'     => $user->name,
             'email'    => $user->email,
-            'provider' => $provider,
-            'provider_id' => $user->id
+            'matricula' => '123',
+//            'provider_id' => $user->id
+            'password' => '123'
         ]);
     }
 
