@@ -99,9 +99,10 @@
                                 <div class="card-header text-center" data-background-color="green">
                                     <h4 class="card-title">Login</h4>
                                     <div class="social-line">
-                                        <a href="#btn" class="btn btn-just-icon btn-simple">
-                                            <i class="fa fa-facebook-square"></i>
-                                        </a>
+                                        {{--<a href="#btn" class="btn btn-just-icon btn-simple">--}}
+                                            {{--<i class="fa fa-facebook-square"></i>--}}
+                                        {{--</a>--}}
+                                        <a href="{{url('/redirect')}}" class="btn btn-facebook"><i class="fa fa-facebook" aria-hidden="true">facebook</i></a>
                                         <a href="#pablo" class="btn btn-just-icon btn-simple">
                                             <i class="fa fa-twitter"></i>
                                         </a>
@@ -146,9 +147,18 @@
                                             <input type="password" class="form-control" name="password">
                                         </div>
                                     </div>
+
+
+
+
+
                                 </div>
                                 <div class="footer text-center">
                                     <button type="submit" class="btn btn-rose btn-simple btn-wd btn-lg">Vamos La</button>
+
+                                    <a class="btn btn-link" href="{{route('password.request')}}"> esqueceu a senhas</a>
+
+
                                 </div>
                             </div>
                         </form>
