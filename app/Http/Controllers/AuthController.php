@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+
+    use AuthenticatesUsers;
 
 
     public function __construct(){
@@ -38,7 +41,17 @@ class AuthController extends Controller
 
         $credentials = $request->only('email','password');
 
-        if(!Auth::attempt($credentials)){
+        $remember = $request->has('remember');
+
+        if ($this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+
+        if(!Auth::attempt($credentials, $remember)){
+            $this->incrementLoginAttempts($request);
             return redirect()->back()->with('fail','Usuário ou senha invalidos SEU BURRO!!')->withInput();
         }
 
